@@ -3,6 +3,7 @@ package com.apex.clinique.service;
 import com.apex.clinique.entities.Clinique;
 import com.apex.clinique.entities.Medecin;
 import com.apex.clinique.entities.Patient;
+import com.apex.clinique.entities.RendezVous;
 import com.apex.clinique.repositories.CliniqueRepository;
 import com.apex.clinique.repositories.MedecinRepository;
 import com.apex.clinique.repositories.PatientRepository;
@@ -55,6 +56,32 @@ public class ExamenServiceImpl implements IexamenService{
     public Patient addPatient(Patient patient) {
 
         return patientRepository.save(patient);
+    }
+
+    @Override
+    public void addRDVAndAssignMedAndPatient(RendezVous rdv, Long idMedecin, Long idPatient) {
+        Medecin medecin= medecinRepository.findById(idMedecin).get();
+        Patient patient=patientRepository.findById(idPatient).get();
+       /* List<RendezVous> listerendezvousmedecin=new ArrayList<>();
+        List<RendezVous> listrendezvouspatient=new ArrayList<>();
+        if(medecin.getRendezVouss()!=null){
+            listerendezvousmedecin=medecin.getRendezVouss();
+        }
+        listerendezvousmedecin.add(rdv);
+        medecin.setRendezVouss(listerendezvousmedecin);
+
+        if(patient.getRendezVouss()!=null){
+            listrendezvouspatient=patient.getRendezVouss();
+        }
+        listrendezvouspatient.add(rdv);
+        patient.setRendezVouss(listrendezvouspatient);
+        medecinRepository.save(medecin);
+        patientRepository.save(patient);*/
+        rdv.setMedecin(medecin);
+        rdv.setPatient(patient);
+        rendezVousRepository.save(rdv);
+
+
     }
 
 }

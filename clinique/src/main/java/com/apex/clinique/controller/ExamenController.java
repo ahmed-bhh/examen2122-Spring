@@ -3,6 +3,7 @@ package com.apex.clinique.controller;
 import com.apex.clinique.entities.Clinique;
 import com.apex.clinique.entities.Medecin;
 import com.apex.clinique.entities.Patient;
+import com.apex.clinique.entities.RendezVous;
 import com.apex.clinique.repositories.CliniqueRepository;
 import com.apex.clinique.service.IexamenService;
 import lombok.AccessLevel;
@@ -29,5 +30,9 @@ public class ExamenController {
     @PutMapping("/addPatient/")
     public Patient addPatient(@RequestBody Patient patient){
         return iExamenService.addPatient(patient);
+    }
+    @PutMapping("/addRDVAndAssignMedAndPatient/{idmedecin}/{idpatient}")
+    public void addRDVAndAssignMedAndPatient(@RequestBody RendezVous rdv,@PathVariable Long idmedecin,@PathVariable Long idpatient){
+         iExamenService.addRDVAndAssignMedAndPatient(rdv,idmedecin,idpatient);
     }
 }
