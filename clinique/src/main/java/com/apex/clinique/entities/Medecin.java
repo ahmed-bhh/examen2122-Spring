@@ -1,5 +1,8 @@
 package com.apex.clinique.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,10 +26,16 @@ public class Medecin {
     private Specialite specialite;
     private Integer telephone;
     private Integer prixConsultation;
+   // @JsonManagedReference
     @ManyToMany(mappedBy="medecins", cascade = CascadeType.ALL)
+  //  @JsonIgnoreProperties("medecins")
+
+
     private List<Clinique> cliniques;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="medecin")
+    //@JsonIgnoreProperties("medecin")
+
     private List<RendezVous> RendezVouss;
 
 

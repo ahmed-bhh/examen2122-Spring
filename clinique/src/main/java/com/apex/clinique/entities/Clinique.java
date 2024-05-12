@@ -1,5 +1,6 @@
 package com.apex.clinique.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,7 +21,7 @@ public class Clinique {
     private String nomClinique;
     private String adresse;
     private Integer telephone;
-
+    //@JsonManagedReference
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Medecin> medecins;
 

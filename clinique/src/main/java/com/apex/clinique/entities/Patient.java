@@ -1,5 +1,6 @@
 package com.apex.clinique.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +23,7 @@ public class Patient {
     private Integer telephone;
     private Date dateNaissance;
     @OneToMany(cascade = CascadeType.ALL, mappedBy="patient")
+   // @JsonIgnoreProperties("patient")
     private List<RendezVous> RendezVouss;
 
 
